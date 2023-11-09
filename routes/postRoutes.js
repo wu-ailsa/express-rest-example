@@ -51,7 +51,7 @@ router.patch("/:id", (req, res, next) => {
 });
 
 //DELETE - DELETE - delete a particular post
-app.delete("/:id", (req, res, next) => {
+router.delete("/:id", (req, res, next) => {
     const post = posts.find((p, i) => {
       if (p.id == req.params.id) {
         posts.splice(i, 1);
