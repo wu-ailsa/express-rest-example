@@ -2,7 +2,8 @@ const express = require ('express');
 const app = express();
 const port = 3000
 
-const users = require('./data/users')
+//const users = require("./data/users");
+const users = require('./routes/userRoutes')
 const posts = require('./data/posts')
 
 const bodyParser = require('body-parser')
@@ -10,6 +11,7 @@ const bodyParser = require('body-parser')
 //body parser middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json({extended:true}))
+app.use('/', users)
 
 //home routes
 app.get('/', (req, res) => {
@@ -18,12 +20,12 @@ app.get('/', (req, res) => {
 
 //--------------------   USER ROUTES  ------------------------//
 //INDEX - GET - getting all the users
-app.get("/api/users", (req, res) => {
+app.get("/", (req, res) => {
     res.json(users); 
 })
 
 //CREATE - POST - create a user
-app.post("/api/users", (req, res) => {
+app.post("/", (req, res) => {
     if (req.body.name && req.body.username && req.body.email) {
       if (users.find((u) => u.username == req.body.username)) {
         res.json({ error: "Username Already Taken" });
@@ -56,7 +58,7 @@ app.get("/api/users/:id", (req, res, next) => {
   
 
 //UPDATE - PUT/PATCH - update a user\
-app.patch("/api/users", (req, res, next) => {
+app.patch("/", (req, res, next) => {
     const user = users.find((u, i) => {
       if (u.id == req.params.id) {
         for (const key in req.body) {
