@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
   });
 
 //SHOW - GET - shows information of one post
-app.get('/:id',(req,res,next)=>{
+router.get('/:id',(req,res,next)=>{
     const post = posts.find((p)=> p.id == req.params.id)
 
     if(post) res.json(post)
@@ -36,7 +36,7 @@ app.get('/:id',(req,res,next)=>{
 
 
 //UPDATE - PUT/PATCH - update a particular post
-app.patch("/:id", (req, res, next) => {
+router.patch("/:id", (req, res, next) => {
   const post = posts.find((p, i) => {
     if (p.id == req.params.id) {
       for (const key in req.body) {
