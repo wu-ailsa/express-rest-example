@@ -8,8 +8,6 @@ const port = 3000
 const users = require('./routes/userRoutes')
 const posts = require ('./routes/postRoutes')
 
-
-
 //body parser middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json({extended:true}))
