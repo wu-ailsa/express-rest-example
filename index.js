@@ -4,14 +4,16 @@ const port = 3000
 
 //const users = require("./data/users");
 const users = require('./routes/userRoutes')
-const posts = require('./data/posts')
+// const posts = require('./data/posts')
+const posts = require ('./routes/postRoutes')
 
 const bodyParser = require('body-parser')
 
 //body parser middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json({extended:true}))
-app.use('/', users)
+app.use('/api/users', users)
+app.use('/api/posts',posts)
 
 //home routes
 app.get('/', (req, res) => {
